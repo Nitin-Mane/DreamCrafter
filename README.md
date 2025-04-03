@@ -1,235 +1,246 @@
 # DreamCrafter: An Intel® OpenVINO™ & oneAPI-Powered Smart Image Diffusion Hub
+## Windows & Web AI Diffusion Platform (Anaconda + Visual Studio)
 
-Welcome to **DreamCrafter**, a Windows application and a web app (Flask + React) that harnesses the power of [Intel® OpenVINO™](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html) and [Intel® oneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html) to generate stunning images in various styles, including **Ghibli-style**, **3D Animate**, **Comic**, and more! This repository offers the perfect starting point for developers looking to create, transform, and experiment with AI-generated art. Let’s dive in!
+[![DreamCrafter](Media/Images/dreamcrafter-logo.png)](https://github.com/Nitin-Mane/DreamCrafter)
+
+[![VERSION](https://img.shields.io/badge/VERSION-1.0.0-blue.svg)](https://github.com/Nitin-Mane/image/assert/DreamCrafter/tree/1.0.0)
+[![DEV BRANCH](https://img.shields.io/badge/DEV%20BRANCH-1.1.0-blue.svg)](https://github.com/Nitin-Mane/image/assert/DreamCrafter/tree/1.1.0)
+[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-lightgrey.svg)](CONTRIBUTING.md)
+[![Issues](https://img.shields.io/badge/Issues-Welcome-lightgrey.svg)](issues)
+[![LICENSE](https://img.shields.io/badge/LICENSE-MIT-blue.svg)](LICENSE)
+
+&nbsp;
+
+# Table Of Contents
+
+- [Introduction](#introduction)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Projects](#projects)
+    - [Windows App (Visual Studio)](#windows-app-visual-studio)
+    - [Web App (Flask + React)](#web-app-flask--react)
+- [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Anaconda Setup](#anaconda-setup)
+    - [Visual Studio Setup](#visual-studio-setup)
+- [Usage](#usage)
+- [Supported Styles](#supported-styles)
+- [Expandability & Fairness](#expandability--fairness)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+    - [Contributors](#contributors)
+- [Versioning](#versioning)
+- [License](#license)
+- [Bugs/Issues](#bugsissues)
 
 ---
 
-## Table of Contents
+## Introduction
 
-1. [Overview](#overview)  
-2. [Key Features](#key-features)  
-3. [Installation](#installation)  
-4. [Usage](#usage)  
-5. [Supported Styles](#supported-styles)  
-6. [Architecture & Technology](#architecture--technology)  
-7. [How OpenVINO™ & OneAPI Help](#how-openvino--oneapi-help)  
-8. [Expandability & Fairness](#expandability--fairness)  
-9. [Roadmap](#roadmap)  
-10. [Contributing](#contributing)  
-11. [License](#license)  
-
----
-
-## Overview
-
-**DreamCrafter** is a smart image diffusion application that showcases how AI can be leveraged to create visually striking art. Through the synergy of **Intel® OpenVINO™** and **Intel® oneAPI**, the application offers:
-
-- **High-performance** model inference on Intel hardware (CPUs, GPUs, VPUs).
-- **Cross-platform** availability (with special focus on Windows).
-- A **user-friendly** interface (web-based with **Flask + React**, plus a desktop client).
-
-With a few clicks, you can experiment with various artistic styles—_Ghibli-inspired landscapes_, _comic-style portraits_, _3D animated characters_, and many more.
+**DreamCrafter** is a **Windows & Web AI Diffusion Platform** leveraging [Intel® OpenVINO™](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html) and [Intel® oneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html) to create generative art in various styles: **Ghibli**, **3D Animate**, **Comic**, and more. This repository provides both a **Visual Studio** project for a native Windows application and a **Flask + React** web app, offering a flexible, multi-project solution for AI-driven art generation.
 
 ---
 
 ## Key Features
 
-1. **Windows Desktop & Web App**: Choose between a native Windows desktop application or run the app in your browser using a **Flask + React** stack.
-2. **Multiple Styles**: Generate AI art in different creative styles (Ghibli, Comic, 3D Animate, etc.).
-3. **Optimized Inference**: Powered by Intel® OpenVINO™ for fast, hardware-accelerated model performance.
-4. **Scalable**: Built on Intel® oneAPI for easy deployment and integration with other AI solutions.
-5. **User-Friendly**: Seamless UI for both beginners and experts in AI image generation.
+- **High-Performance Inference**: Hardware-accelerated with Intel® OpenVINO™.  
+- **Cross-Platform**: A Windows-native application (Visual Studio) + a web-based solution.  
+- **Multiple AI Styles**: Ghibli, 3D Animate, Comic, etc.  
+- **Scalable**: Built to leverage Intel® oneAPI across CPU, GPU, or VPU hardware.  
+- **Easy Setup**: Anaconda environment for Python-based server modules.
+
+---
+
+## Architecture
+
+```plaintext
++---------------------------+          +----------------------+         +--------------------+
+| Windows App (VisualStudio)|          |       React UI       | <-----> |    Flask Server    |
+|  (Native .NET/C++/C#)     |          +----------+-----------+         +---------+----------+
++-------------+-------------+                     |                           |
+              |                                   |                           |
+              |                                   v                           |
+              |                           +---------------+                    |
+              |                           | AI Inference |    <---  OpenVINO  |
+              |                           |   Engine     |                    |
+              |                           +-------+------+                    |
+              |                                   |                           |
+              |                                   |                           |
+              |                           Intel® oneAPI                       |
+              |                                   |                           |
+              v                                   v                           v
++-------------------------------------------------------------------------------------------------+
+|                              Intel® Hardware (CPU, GPU, VPU)                                    |
++-------------------------------------------------------------------------------------------------+
+```
+
+- **Windows App**: A native Windows application built with Visual Studio (C#/C++/WPF, etc.).  
+- **Flask Backend**: Python-based inference server.  
+- **React Frontend**: Modern UI for the web version.  
+- **OpenVINO™**: Optimized model execution on Intel hardware.  
+- **Intel® oneAPI**: Unified programming model for cross-architecture performance.
+
+---
+
+## Projects
+
+### Windows App (Visual Studio)
+
+- Located in the `/windows-app` directory (or similar).
+- Uses a standard Visual Studio solution (`.sln`) and project (`.csproj` / `.vcxproj`).
+- Communicates with the AI backend (optionally local or remote) for inference requests.
+
+### Web App (Flask + React)
+
+- Located in `/backend` (Flask) and `/frontend` (React).
+- Flask serves inference endpoints.
+- React provides a user-friendly interface for generating images on the fly.
 
 ---
 
 ## Installation
 
-> **Prerequisites**:
-> - Python 3.8+ (for the Flask backend).
-> - Node.js 14+ (for the React frontend).
-> - [Intel® oneAPI Base Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html) installed (optional but recommended).
-> - [Intel® OpenVINO™ Toolkit](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html) installed and configured.
+### Prerequisites
 
-Follow these steps to get your environment up and running:
+1. **Anaconda** or **Miniconda** (for Python 3.8+)
+2. **Node.js 14+** (for the React frontend)
+3. **Visual Studio 2019/2022** (for the Windows app)
+4. **Intel® oneAPI Base Toolkit** (optional but recommended)
+5. **Intel® OpenVINO™ Toolkit** (installed and configured for your system)
 
-1. **Clone the Repository**:
+### Anaconda Setup
 
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/DreamCrafter.git
+   git clone https://github.com/Nitin-Mane/DreamCrafter.git
    cd DreamCrafter
    ```
 
-2. **Set up Python environment**:
-
+2. **Create and activate a new Anaconda environment**:
    ```bash
-   # Create a virtual environment (recommended)
-   python -m venv venv
-   source venv/bin/activate  # or venv\Scripts\activate on Windows
+   conda create -n dreamcrafter_env python=3.8
+   conda activate dreamcrafter_env
+   ```
 
-   # Install Python dependencies
+3. **Install Python dependencies**:
+   ```bash
+   cd backend
    pip install -r requirements.txt
    ```
 
-3. **Set up React frontend**:
-
+4. **Install frontend dependencies**:
    ```bash
-   cd frontend
+   cd ../frontend
    npm install
    # or yarn install
    ```
 
-4. **Configure Intel® OpenVINO™**:
-
+5. **Configure OpenVINO™**:
    - Follow the [OpenVINO™ installation guide](https://docs.openvino.ai/latest/openvino_docs_install_guides.html).
-   - Run `setupvars.bat` (on Windows) or `setupvars.sh` (on Linux) to configure the environment.
+   - Run `setupvars.bat` (on Windows) to configure your environment (or source the equivalent script on Linux).
 
-5. **Configure Intel® oneAPI** (Optional but recommended):
-
+6. **Configure Intel® oneAPI** (Optional):
    - [Install oneAPI Base Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html).
-   - Source/Run the environment script so that compilers and libraries are recognized.
+   - Source/Run the environment setup script to ensure compilers and libraries are recognized.
 
-6. **Run the Flask server**:
+### Visual Studio Setup
 
-   ```bash
-   cd ../backend
-   python app.py
-   # This should start the Flask app
-   ```
-
-7. **Run the React app**:
-
-   ```bash
-   cd ../frontend
-   npm run start
-   # or yarn start
-   ```
-
-8. **Access the Application**:
-
-   - Open your web browser and navigate to `http://localhost:3000`.
-
-> **Note**: For the Windows desktop app, consult the `desktop/` folder for build instructions (using PyInstaller, Electron, or your chosen bundler).
+1. **Open the `DreamCrafter.sln` file** in Visual Studio (found in `/windows-app/` or your chosen folder).
+2. **Install any required NuGet packages** upon first load (if prompted).
+3. **Configure your build** (Debug/Release) and **platform** (x64 recommended).
+4. **Build & Run** the project.  
+   - This should produce a Windows application that, when run, can either self-contain the inference logic or communicate with the Flask backend for AI requests.
 
 ---
 
 ## Usage
 
-1. **Select a Style**  
-   Choose from a variety of pre-defined style prompts: _Ghibli_, _3D Animate_, _Comic_, etc.
+1. **Run the Web Backend**  
+   - Activate your Anaconda environment:  
+     ```bash
+     conda activate dreamcrafter_env
+     ```
+   - Start Flask backend:  
+     ```bash
+     cd backend
+     python app.py
+     ```
+   - Start the React frontend:  
+     ```bash
+     cd ../frontend
+     npm start
+     # or yarn start
+     ```
+   - Access via [http://localhost:3000](http://localhost:3000).
 
-2. **Upload or Capture**  
-   - Provide an initial image or start from a blank prompt.
-   - Adjust parameters like _prompt strength_, _guidance scale_, _steps_, etc.
-
-3. **Generate**  
-   Click the **Generate** button and watch your AI-driven creation come to life using the optimized OpenVINO™ backend.
-
-4. **Review & Save**  
-   Once satisfied, download your artwork in the format of your choice (JPG, PNG, etc.).
+2. **Run the Windows App**  
+   - Launch the application from Visual Studio or the compiled `.exe`.
+   - Configure the backend endpoint (if needed) to point to the Flask server.  
+     - For local setup, it might be `http://127.0.0.1:5000/`.  
+   - Use the desktop UI to select styles, prompt text, etc.
 
 ---
 
 ## Supported Styles
 
-DreamCrafter supports multiple styles to spark your creativity:
-
-- **Ghibli-style**: Inspired by the delicate, dreamlike aesthetics of Studio Ghibli.
-- **3D Animate**: Convert your prompt into a 3D-like animated scene.
-- **Comic**: Bold outlines, stylized textures—perfect for that graphic novel flair.
-- **Realistic Portrait**: Ultra-detailed, high-fidelity images for near photo-realistic outcomes.
-- **Retro-Futuristic**: Synthwave, neon-lit, and vintage vibes.
-
-Feel free to add or tweak styles by modifying the prompt definitions in the codebase.
-
----
-
-## Architecture & Technology
-
-```
-+--------------------+          +----------------------+         +--------------------+
-|   Windows Desktop  |          |       React UI       | <-----> |    Flask Server    |
-|    Application     |          +----------+-----------+         +---------+----------+
-|  (Optional Build)  |                     |                           |
-+---------+----------+                     |                           |
-          |                                |                           |
-          |                                v                           |
-          |                        +---------------+                    |
-          |                        | AI Inference |    <---  OpenVINO  |
-          |                        |   Engine     |                    |
-          |                        +-------+------+                    |
-          |                                |                           |
-          |                                |                           |
-          |                        Intel® oneAPI                       |
-          |                                |                           |
-          v                                v                           v
-+-----------------------------------------------------------------------------------+
-|                         Intel® Hardware (CPU, GPU, VPU)                           |
-+-----------------------------------------------------------------------------------+
-```
-
-- **Flask** (Python) handles backend logic and model inference requests.  
-- **React** offers a sleek frontend interface for the web application.  
-- **Windows Desktop** (optional) for those who prefer an offline experience.  
-- **Intel® OpenVINO™** accelerates AI inference, taking advantage of Intel hardware.  
-- **Intel® oneAPI** ensures scalable, cross-architecture performance.
-
----
-
-## How OpenVINO™ & OneAPI Help
-
-### Performance Acceleration
-- **OpenVINO™** optimizes deep learning models for Intel hardware, significantly reducing inference time.
-- **oneAPI** provides a **unified programming model** that lets you write code once and deploy it across **CPUs, GPUs, and other accelerators**.
-
-### Better Results
-- By efficiently utilizing CPU vectorization, GPU parallel processing, or even specialized VPUs (Vision Processing Units), the generation process can handle **larger batch sizes** and **higher-resolution** outputs without sacrificing performance.
-
-### Expandability
-- **oneAPI** modules (like DPC++ and MKL) can be tapped into for advanced scientific computing or new AI features.
-- The plugin-based architecture of **OpenVINO™** allows additional backends to be integrated as your project scales.
+- **Ghibli**: Whimsical animations reminiscent of Studio Ghibli  
+- **3D Animate**: Pixar-like rendering  
+- **Comic**: Bold lines, stylized color palette  
+- **Realistic Portrait**: High-fidelity, photo-realistic results  
+- **Retro-Futuristic**: Neon-lit, vintage sci-fi vibe  
 
 ---
 
 ## Expandability & Fairness
 
 1. **Expandability**  
-   - The codebase is modular, making it easy to add new models or styles.  
-   - The synergy between **OpenVINO™** and **oneAPI** means you can scale up from a single machine to distributed environments.
+   - Modular codebase allows new AI models or style prompts to be easily integrated.  
+   - Intel® oneAPI’s scalable approach supports multi-architecture deployments.
 
 2. **Fairness**  
-   - The project encourages users to train and fine-tune models responsibly, ensuring representations are inclusive.  
-   - We recommend standardizing training datasets, employing bias detection, and including disclaimers about potential biases inherent in AI models.  
-   - Community feedback is welcomed to continually refine fairness measures.
+   - We encourage responsible and inclusive dataset usage.  
+   - Community input is sought to address AI biases and improve representation.
 
 ---
 
 ## Roadmap
 
-- **Model Upgrades**: Add more advanced diffusion models and style variations.
-- **Enhanced Desktop App**: Provide streamlined installers and auto-update capabilities.
-- **Cloud Deployment**: Integrate with cloud providers to seamlessly scale large inference jobs.
-- **User Profiles & Galleries**: Let users store and share their creations via curated galleries.
-- **Improved Fairness Tools**: Tools for auditing and mitigating biases in generated art.
+- **More Advanced Models**: Integration with additional diffusion or generative models.  
+- **Cloud Solutions**: Containerization & orchestration (Docker, Kubernetes).  
+- **Enhanced Desktop Features**: Auto-updates, usage analytics, and offline generation.  
+- **User Portfolio**: Allow users to store or share generated images.
 
 ---
 
 ## Contributing
 
-Contributions are always welcome! Whether it’s:
-- Fixing bugs  
-- Adding new diffusion models or style prompts  
-- Enhancing the UI/UX  
-- Improving documentation  
+We welcome contributions via pull requests and bug reports through GitHub issues.
 
-Please open an [issue](https://github.com/your-username/DreamCrafter/issues) or submit a pull request.
-
----
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE). See the **LICENSE** file for details.
+[![LICENSE](https://img.shields.io/badge/LICENSE-MIT-blue.svg)](LICENSE)
+
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-**Happy Crafting with DreamCrafter!**
+## Bugs/Issues
+
+Please create [issues here](issues) for any bugs or feature requests. We greatly value your feedback and contributions!
 ```
+
+---
+
+### Usage Notes
+
+1. **File Organization**  
+   - Make sure your Visual Studio project is located in a clearly labeled folder (e.g., `windows-app/`) separate from your `backend/` and `frontend/` directories.
+2. **Conda Environment**  
+   - Using Anaconda ensures reproducibility for Python-based dependencies.  
+   - The same environment can be shared or exported with `conda env export > environment.yml`.
+3. **License & Badges**  
+   - Update the badges (version, dev branch, etc.) to reflect your repository’s current states.  
+   - Replace `YourUsername` with your actual GitHub handle.
+
+Feel free to **modify** any part of the script to better suit your project’s structure or naming conventions. This layout highlights a **multi-project** setup combining a **native Windows app** (Visual Studio) with a **web-based** AI inference application (Flask + React) under a **single repository**.
