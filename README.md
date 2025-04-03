@@ -1,6 +1,3 @@
-Below is the **complete Markdown script** for your `README.md`. You can copy the content and paste it into a file named `README.md` in your project repository.
-
-```markdown
 # DreamCrafter: An Intel® OpenVINO™ & oneAPI-Powered Smart Image Diffusion Hub
 
 Welcome to **DreamCrafter**, a Windows application and a web app (Flask + React) that harnesses the power of [Intel® OpenVINO™](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html) and [Intel® oneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html) to generate stunning images in various styles, including **Ghibli-style**, **3D Animate**, **Comic**, and more! This repository offers the perfect starting point for developers looking to create, transform, and experiment with AI-generated art. Let’s dive in!
